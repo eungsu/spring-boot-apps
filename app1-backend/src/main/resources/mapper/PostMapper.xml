@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.app1.mapper.PostMapper">
+
+  <select id="getTotalRows" resultType="int">
+    select count(*)
+      from posts
+     where deleted = false
+  </select>
+
+  <select id="getPosts" resultType="Post">
+    select A.post_no      as no
+         , A.user_no      as userNo
+         , A.title
+         , A.created_date as createdDate
+         , B.nickname     as "user.nickname"
+      from posts A, users B
+     where A.deleted = false
+       and A.user_no = B.user_no
+  order by A.post_no desc
+    offset #{offset} rows
+     fetch first #{rows} rows only
+  </select>
+
+</mapper>
