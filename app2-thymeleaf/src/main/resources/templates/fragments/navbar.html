@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<nav th:fragment="navbar-fragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/">스프링부트 게시판</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-support-content"
+			aria-controls="navbar-support-content" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbar-support-content">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link"
+						th:classappend="${#strings.equals(menu, 'home')} ? 'active fw-bold'"
+						th:href="@{/}">홈</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" 
+						th:classappend="${#strings.equals(menu, 'posts')} ? 'active fw-bold'"					   
+						th:href="@{/posts/list}">게시글</a>
+				</li>
+			</ul>
+			<span class="navbar-text"
+				sec:authorize="isAuthenticated()"
+				sec:authentication="principal.user.nickname">
+				홍길동
+			</span>
+			<ul class="navbar-nav mb-2 mb-lg-0">
+				<li class="nav-item" sec:authorize="isAnonymous()">
+					<a class="nav-link" 
+						th:classappend="${#strings.equals(menu, 'login')} ? 'active fw-bold'"					   
+						th:href="@{/login}">로그인</a>
+				</li>
+				<li class="nav-item" sec:authorize="isAuthenticated()">
+					<form class="d-inline" method="post" th:action="@{/logout}" >
+						<button type="submit" class="btn btn-link nav-link">로그아웃</button>
+					</form>
+				</li>
+				<li class="nav-item" sec:authorize="isAnonymous()">
+					<a class="nav-link" 
+						th:classappend="${#strings.equals(menu, 'signup')} ? 'active fw-bold'"					   
+						th:href="@{/signup}">회원가입</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+</html>

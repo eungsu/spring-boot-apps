@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{layout/base}"
+	th:with="menu='posts'">
+<style layout:fragment="style">
+	body {
+		background-color: #f8f9fa; /* 밝은 회색 배경 */
+	}
+	.container {
+		margin-top: 40px;
+		margin-bottom: 60px;
+		background-color: #ffffff;
+		padding: 40px;
+		border-radius: 8px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+	}
+	.post-header h1 {
+		font-size: 2.2rem;
+		font-weight: bold;
+		margin-bottom: 10px;
+		color: #343a40;
+	}
+	.post-meta {
+		font-size: 0.9rem;
+		color: #6c757d;
+		border-bottom: 1px solid #e9ecef;
+		padding-bottom: 15px;
+		margin-bottom: 25px;
+	}
+	.post-meta span {
+		margin-right: 15px;
+	}
+	.post-content {
+		font-size: 1.1rem;
+		line-height: 1.8;
+		color: #495057;
+		min-height: 200px; /* 최소 높이 설정 */
+		margin-bottom: 40px;
+	}
+	.post-actions .btn {
+		margin-right: 10px;
+	}
+	
+	/* 댓글 섹션 스타일 */
+	.comments-section {
+		border-top: 1px solid #e9ecef;
+		padding-top: 30px;
+		margin-top: 40px;
+	}
+	.comment-item {
+		border: 1px solid #dee2e6;
+		border-radius: 5px;
+		padding: 15px;
+		margin-bottom: 15px;
+		background-color: #f8f9fa;
+	}
+	.comment-meta {
+		font-size: 0.85rem;
+		color: #6c757d;
+		margin-bottom: 5px;
+	}
+	.comment-meta strong {
+		color: #495057;
+	}
+	.comment-content {
+		font-size: 1rem;
+		line-height: 1.6;
+		color: #343a40;
+	}
+	.comment-form textarea {
+		resize: vertical; /* 세로 크기 조절 허용 */
+		min-height: 100px;
+	}
+	.comment-actions {
+		text-align: end;
+		margin-top: 10px;
+	}
+	.error-message {
+		color: #dc3545;
+		font-size: 0.875em;
+		margin-top: 0.25rem;
+	}
+</style>
+<section layout:fragment="content">
+	<div class="post-header">
+		<h1 class="post-title" th:text="${post.title}">게시글 상세 제목입니다</h1>
+		<div class="post-meta">
+			<span><i class="bi bi-person-fill"></i> 작성자: <strong class="text-dark" th:text="${post.user.nickname}">홍길동</strong></span>
+			<span><i class="bi bi-calendar-check-fill"></i> 작성일: [[${#temporals.format(post.createdDate, 'yyyy년 M월 d일 a h:m:s')}]]</span>
+			<span><i class="bi bi-eye-fill"></i> 조회수: [[${#numbers.formatDecimal(post.viewCnt, 0, 'COMMA', 0, 'POINT')}]]</span>
+			<span><i class="bi bi bi-list"></i> 댓글수: [[${#numbers.formatDecimal(post.commentCnt, 0, 'COMMA', 0, 'POINT')}]]</span>
+		</div>
+	</div>
+	<div class="post-content">
+		<p th:utext="${@markdown.renderHTML(post.content)}"></p>
+	</div>
+	<div class="post-actions text-end">
+		<th:block 
+			sec:authorize="isAuthenticated()"
+			th:if="${#authentication.principal.user.no == post.userNo}">
+			<a class="btn btn-warning" 
+				th:href="@{/posts/update(no=${post.no})}" >
+				<i class="bi bi-pencil-square"></i> 수정
+			</a>
+			<button class="btn btn-danger"
+				th:onclick="|confirmDelete(${post.no})|">
+				<i class="bi bi-trash-fill"></i> 삭제
+			</button>
+		</th:block>
+		<a class="btn btn-secondary"
+			th:href="@{/posts/list}">
+			<i class="bi bi-list"></i> 목록으로   
+		</a>
+	</div>
+	
+	<div class="comments-section">
+		<h4>댓글 (<span th:text="${#lists.size(comments)}">0</span>)</h4>
+		<div th:if="${#lists.isEmpty(comments)}" class="alert alert-info">
+			등록된 댓글이 없습니다.
+		</div>
+		<div th:unless="${#lists.isEmpty(comments)}">
+			<div class="comment-list" th:each="comment : ${comments}"
+				th:attr="id=|comment-${comment.no}|">
+				<div class="comment-meta">
+					<strong><i class="bi bi-person-cicle"></i> <span th:text="${comment.user.nickname}">댓글 작성자</span></strong>
+					<span> | <i class="bi bi-calendar-check"> [[${#temporals.format(comment.createdDate, 'yyyy년 M월 d일 a h:m:s')}]]</i></span>
+				</div>
+				<div class="comment-content">
+					<p th:text="${comment.content}">댓글 내용이다.</p>
+				</div>
+				<div class="comment-actions"
+					sec:authorize="isAuthenticated()"
+					th:if="${#authentication.principal.user.no == comment.userNo}">
+					<button type="button" class="btn btn-sm btn-outline-danger"
+						th:onclick="|confirmCommentDelete(${comment.no}, ${post.no})|">삭제</button>
+				</div>
+			</div>
+		</div>
+		<th:block sec:authorize="isAuthenticated()">
+			<div class="comment-form mt-4">
+				<h5>댓글 작성</h5>
+				<form th:action="@{/posts/comments/add}" method="post" id="comment-form">
+					<input type="hidden" name="postNo" th:value="${post.no}" />
+					<div class="mb-3">
+						<textarea class="form-control"
+							rows="3"
+							name="content"
+							placeholder="내용을 입력하세요"></textarea>
+					</div>
+					<div class="text-end">
+						<button type="submit" class="btn btn-primary">댓글 작성</button>
+					</div>
+				</form>
+			</div>
+		</th:block>
+	</div>
+</section>
+
+<th:block layout:fragment="script">
+	<th:block sec:authorize="isAuthenticated()"
+		th:if="${#authentication.principal.user.no == post.userNo}">
+		<script type="text/javascript">
+			function confirmDelete(postNo) {
+				if (confirm("이 게시글을 삭제하시겠습니까?")) {
+					location.href = `/posts/delete?no=${postNo}`;
+				}
+			}
+		</script>
+	</th:block>
+	<th:block sec:authorize="isAuthenticated()">
+		<script type="text/javascript">
+			function confirmCommentDelete(commentNo, postNo) {
+				if (confirm("이 댓글을 삭제하시겠습니까?")) {
+					location.href = `/posts/comments/delete?commentNo=${commentNo}&postNo=${postNo}`;
+				}
+			}
+		</script>
+	</th:block>
+</th:block>
+</html>

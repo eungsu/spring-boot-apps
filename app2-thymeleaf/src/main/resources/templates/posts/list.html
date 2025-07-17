@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{layout/base}"
+	th:with="menu='posts'">
+<style layout:fragment="style">
+	body {
+		background-color: #f8f9fa; /* 밝은 회색 배경 */
+	}
+	.container {
+		margin-top: 40px;
+		margin-bottom: 60px;
+		background-color: #ffffff;
+		padding: 40px;
+		border-radius: 8px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+	}
+	.table th, .table td {
+		vertical-align: middle; /* 테이블 셀 내용 세로 중앙 정렬 */
+	}
+	.table-hover tbody tr:hover {
+		cursor: pointer; /* 테이블 행에 마우스 오버 시 커서 변경 */
+	}
+	.pagination .page-item.active .page-link {
+		background-color: #007bff; /* Bootstrap primary color */
+		border-color: #007bff;
+		color: #fff;
+	}
+	.pagination .page-link {
+		color: #007bff;
+	}
+</style>
+<section layout:fragment="content">
+	<h1 class="mb-4 text-center"><i class="bi bi-list"></i> 게시글 목록</h1>
+
+	<div class="d-flex justify-content-between align-items-center mb-3">
+		<form class="row row-cols-lg-auto g-3 align-items-center"
+			th:action="@{/posts/list}">
+			<div class="col-12">
+				<div class="input-group">
+					<input class="form-control me-2" type="search" name="keyword"
+						th:value="${param.keyword}"
+						placeholder="검색" aria-label="Search">
+				</div>
+			</div>
+			<div class="col-12">
+				<button class="btn btn-outline-success" type="submit">검색</button>
+			</div>
+		</form>
+    	<a th:href="@{/posts/create}" class="btn btn-primary">새 글 작성</a>
+	</div>
+
+	<div class="table-responsive">
+		<table class="table table-hover table-striped border">
+			<thead class="table-dark">
+				<tr>
+					<th scope="col" style="width: 8%;">#</th>
+					<th scope="col" style="width: 50%;">제목</th>
+					<th scope="col" style="width: 15%;">작성자</th>
+					<th scope="col" style="width: 17%;">작성일</th>
+					<th scope="col" style="width: 10%;">조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="post : ${posts}">
+					<th scope="row" th:text="${post.no}">10</th>
+					<td><a th:href="@{/posts/detail(no=${post.no})}" th:text="${post.title}">게시글 제목</a></td>
+					<td th:text="${post.user.nickname}">홍길동</td>
+					<td th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}">2025-07-10</td>
+					<td th:text="${#numbers.formatDecimal(post.viewCnt, 0, 'COMMA', 0, 'POINT')}">1</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<nav th:if="${paging.totalRows != 0}" aria-label="Page navigation example">
+		<ul class="pagination justify-content-center">
+			<li class="page-item"
+				th:classappend="${paging.first} ? 'disabled'">
+				<a class="page-link" 
+					th:href="@{/posts/list(page=${paging.prevPage},keyword=${param.keyword})}" aria-label="Previous">
+					<span aria-hidden="true">이전</span>
+				</a>
+			</li>
+			
+			<li class="page-item"
+				th:classappend="${paging.page == pageNum} ? 'active'"
+				th:each="pageNum : ${#numbers.sequence(paging.beginPage, paging.endPage)}">
+			    <a class="page-link"
+					th:href="@{/posts/list(page=${pageNum},keyword=${param.keyword})}"
+					th:text="${pageNum}">1</a>
+			</li>
+			
+			<li class="page-item"
+				th:classappend="${paging.last} ? 'disabled'">
+				<a class="page-link" 
+					th:href="@{/posts/list(page=${paging.nextPage},keyword=${param.keyword})}" aria-label="Next">
+					<span aria-hidden="true">다음</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</section>
+</html>

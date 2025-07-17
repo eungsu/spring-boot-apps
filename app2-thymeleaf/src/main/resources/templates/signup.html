@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layout/base}"
+      th:with="menu='signup'">
+<style layout:fragment="style">
+	body {
+	    background-color: #f8f9fa; /* 밝은 회색 배경 */
+	}
+	.login-container {
+	    max-width: 600px; /* 로그인 폼의 최대 너비 */
+	    margin: 40px auto; /* 위아래 100px 마진, 좌우 자동 마진으로 중앙 정렬 */
+	    padding: 30px;
+	    border-radius: 8px;
+	    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	    background-color: #ffffff;
+	}
+</style>
+
+<section layout:fragment="content">
+    <div class="col-md-6 col-lg-4 login-container">
+        <h2 class="text-center mb-4">회원가입</h2>
+        
+        <form th:action="@{/signup}" method="post" novalidate="novalidate" th:object="${signupForm}">
+            <div class="mb-3">
+                <label for="username" class="form-label"><span class="text-danger">*</span> 아이디</label>
+                <input type="text" class="form-control" 
+					th:field="*{username}"
+					th:classappend="${validated} ? (${#fields.hasErrors('username')} ? 'is-invalid' : 'is-valid')"
+					placeholder="아이디를 입력하세요"/>
+                <div class="form-text">영어 대소문자, 숫자 포함 3~20 글자</div>
+                <div class="invalid-feedback" 
+					th:if="${#fields.hasErrors('username')}"
+					th:errors="*{username}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label"><span class="text-danger">*</span> 비밀번호</label>
+                <input type="password" class="form-control" 
+					th:field="*{password}" 
+					th:classappend="${validated} ? (${#fields.hasErrors('password')} ? 'is-invalid' : 'is-valid')"
+					placeholder="비밀번호를 입력하세요">
+                <div class="form-text">영어 대소문자, 숫자 최소 하나 이상 포함 8~20 글자</div>
+                <div class="invalid-feedback" 
+					th:if="${#fields.hasErrors('password')}"
+					th:errors="*{password}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label"><span class="text-danger">*</span> 이메일</label>
+                <input type="email" class="form-control" 
+					th:field="*{email}" 
+					th:classappend="${validated} ? (${#fields.hasErrors('email')} ? 'is-invalid' : 'is-valid')"
+					placeholder="이메일을 입력하세요">
+                <div class="invalid-feedback" 
+					th:if="${#fields.hasErrors('email')}"
+					th:errors="*{email}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">이름</label>
+                <input type="text" class="form-control" 
+					th:field="*{nickname}" 
+					th:classappend="${validated} ? (${#fields.hasErrors('nickname')} ? 'is-invalid' : 'is-valid')"
+					placeholder="이름을 입력하세요">
+                <div class="form-text">한글 2~7 글자</div>
+                <div class="invalid-feedback" 
+					th:if="${#fields.hasErrors('nickname')}"
+					th:errors="*{nickname}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">전화번호</label>
+                <input type="text" class="form-control" 
+					th:field="*{tel}" 
+					th:classappend="${validated} ? (${#fields.hasErrors('tel')} ? 'is-invalid' : 'is-valid')"
+					placeholder="전화번호를 입력하세요">
+                <div class="invalid-feedback" 
+					th:if="${#fields.hasErrors('tel')}"
+					th:errors="*{tel}"></div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mb-3">회원가입</button>
+            <a th:href="@{/login}" class="btn btn-outline-secondary w-100 mb-3">로그인</a>
+        </form>
+    </div>
+</section>
+</html>

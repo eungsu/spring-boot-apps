@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{layout/base}"
+	th:with="menu='home'">
+<section layout:fragment="content">
+	<div class="row mb-3">
+		<div class="col-12">
+			<div class="p-5 mb-4 bg-light rounded-3">
+			    <div class="container-fluid py-5 text-center">
+			    	<h1 class="display-5 fw-bold">샘플 애플리케이션</h1>
+					<p class="col-md-8 fs-4 mx-auto">Spring Boot, Spring Security, mybatis, H2, Thymeleaf를 활용한 게시판 웹 애플리케이션입니다.</p>
+					<hr>
+					<a class="btn btn-primary btn-lg mt-3"
+						th:href="@{/signup}"
+						sec:authorize="isAnonymous()">회원가입</a>
+					<a class="btn btn-outline-primary btn-lg mt-3 ms-2"
+						th:href="@{/login}"
+						sec:authorize="isAnonymous()">로그인</a>
+			    </div>
+			</div>
+		</div>
+	</div>
+</section>
+</html>
