@@ -16,7 +16,36 @@ values
 insert into posts
 (user_no, title, content)
 values
-(1, '연습2', '연습2 입니다.');
+(2, '연습2', '연습2 입니다.');
 
+insert into posts
+(user_no, title, content)
+values
+(1, '연습3', '연습3 입니다.');
+
+insert into posts
+(user_no, title, content)
+values
+(2, '연습4', '연습4 입니다.');
+
+insert into posts
+(user_no, title, content, comment_cnt)
+values
+(1, '연습5', '연습5 입니다.', 3);
+
+insert into post_comments
+(user_no, post_no, content)
+values
+(1, 5, '첫번째 댓글입니다.');
+
+insert into post_comments
+(user_no, post_no, content)
+values
+(2, 5, '두번째 댓글입니다.');
+
+insert into post_comments
+(user_no, post_no, content)
+values
+(1, 5, '세번째 댓글입니다.');
 
 commit;

@@ -23,7 +23,18 @@ create table if not exists posts (
     user_no int not null references users (user_no),
     title varchar(255) not null,
     content clob not null,
+    view_cnt int default 0,
+    comment_cnt int default 0,
     deleted boolean default false,
+    created_date timestamp default current_timestamp,
+    updated_date timestamp default current_timestamp
+);
+
+create table if not exists post_comments (
+    comment_no int generated always as identity primary key,
+    user_no int not null references users (user_no),
+    post_no int not null references posts (post_no),
+    content varchar(2000) not null,
     created_date timestamp default current_timestamp,
     updated_date timestamp default current_timestamp
 );

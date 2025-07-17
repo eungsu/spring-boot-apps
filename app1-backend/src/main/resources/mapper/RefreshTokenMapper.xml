@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.app1.mapper.RefreshTokenMapper">
+<mapper namespace="com.example.demo.mapper.RefreshTokenMapper">
 
-  <insert id="insertRefreshToken" parameterType="RefreshToken">
-    insert into refresh_tokens
-                (
-                user_no
-              , token
-              , expires
-                )
-         values (
-                #{userNo}
-              , #{token}
-              , #{expires}
-                )
-  </insert>
+	<insert id="insertRefreshToken" parameterType="RefreshToken">
+		insert into refresh_tokens
+			 (
+				user_no
+			  , token
+			  , expires
+			  )
+		 values 
+		      (
+				#{userNo}
+			  , #{token}
+			  , #{expires}
+			  )
+	</insert>
 
-  <delete id="deleteRefreshTokenByUserNo">
-    delete from refresh_tokens
-          where user_no = #{userNo}
-  </delete>
+	<delete id="deleteRefreshTokenByUserNo">
+		delete from refresh_tokens
+			  where user_no = #{userNo}
+	</delete>
 
-  <select id="getRefreshTokenByToken" resultType="RefreshToken">
-    select token_no as no
-         , user_no  as userNo
-         , token
-         , expires
-      from refresh_tokens
-     where token = #{token}
-  </select>
+	<select id="getRefreshTokenByToken" resultType="RefreshToken">
+		select token_no as no
+			 , user_no  as userNo
+			 , token
+			 , expires
+		  from refresh_tokens
+		 where token = #{token}
+	</select>
 
 </mapper>
