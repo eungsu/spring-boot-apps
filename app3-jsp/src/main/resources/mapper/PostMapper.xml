@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PostMapper">
+
+	<insert id="insertPost" parameterType="Post">
+		insert into posts
+		(
+		  user_no
+		, title
+		, content
+		)
+		values
+		(
+		  #{userNo}
+		, #{title}
+		, #{content}
+		)
+	</insert>
+	
+	<update id="updatePost" parameterType="Post">
+		update posts
+		   set 
+			<if test="title != null">
+		       title 		= #{title}
+			</if>
+			<if test="content != null">
+		     , content 		= #{content}
+			</if>
+			 , updated_date = current_timestamp	
+         where post_no = #{no}		
+	</update>
+	
+	<update id="deletePost">
+		update posts
+		   set deleted      = true
+		     , updated_date = current_timestamp	
+		 where post_no = #{postNo}
+	</update>
+
+	<update id="incrementViewCnt">
+		update posts
+		   set view_cnt = view_cnt + 1
+		     , updated_date = current_timestamp	
+		 where post_no = #{postNo}
+	</update>
+	
+	<update id="incrementCommentCnt">
+		update posts
+		   set comment_cnt = comment_cnt + 1
+		     , updated_date = current_timestamp	
+		 where post_no = #{postNo}
+	</update>
+	
+	<update id="decrementCommentCnt">
+		update posts
+		   set comment_cnt = comment_cnt - 1
+		     , updated_date = current_timestamp	
+		 where post_no = #{postNo}
+	</update>
+
+	<select id="getTotalRows" resultType="int">
+		select count(*)
+		  from posts
+		 where deleted = false
+		 <if test="keyword != null and !keyword.isBlank()">
+		   and title like '%' || #{keyword} || '%' 
+		 </if>
+	</select>
+
+	<select id="getPosts" resultType="Post">
+		select A.post_no		as no
+		     , A.user_no		as userNo
+		     , A.title
+		     , A.view_cnt		as viewCnt
+		     , A.created_date	as createdDate
+		     , B.nickname		as "user.nickname"
+		  from posts A, users B
+		 where A.deleted = false
+		   and A.user_no = B.user_no
+		<if test="keyword != null and !keyword.isBlank()">
+		   and A.title like '%' || #{keyword} || '%' 
+		 </if>
+      order by A.post_no desc
+		offset #{offset} rows
+		 fetch first #{rows} rows only
+	</select>
+	
+	<select id="getPostByPostNo" resultType="Post">
+		select A.post_no		as no
+			 , A.user_no		as userNo
+			 , A.title
+			 , A.content
+			 , A.view_cnt		as viewCnt
+			 , A.comment_cnt	as commentCnt
+			 , A.created_date	as createdDate
+			 , A.updated_date	as updatedDate
+			 , B.nickname		as "user.nickname"
+		  from posts A, users B
+		 where A.user_no = B.user_no
+		   and A.post_no = #{postNo}
+	</select>
+
+	<select id="getPostUserNoByPostNo" resultType="int">
+		select user_no
+		  from posts
+		 where post_no = #{postNo}
+	</select>
+
+</mapper>

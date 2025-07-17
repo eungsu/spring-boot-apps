@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CommentMapper">
+
+	<select id="getCommentsByPostNo" resultType="Comment">
+		select A.comment_no			as no
+		     , A.user_no			as userNo
+		     , A.post_no			as postNo
+		     , A.content
+		     , A.created_date		as createdDate
+		     , B.nickname			as "user.nickname"
+		  from post_comments A, users B
+		 where A.post_no = #{postNo}
+		   and A.user_no = B.user_no
+	</select>
+	
+	<select id="getCommentByCommentNo" resultType="Comment">
+		select comment_no		as no
+		     , user_no			as userNo
+		     , post_no			as postNo
+		     , content
+		     , created_date		as createdDate
+		  from post_comments
+		 where comment_no = #{commentNo}
+	</select>
+	
+	<insert id="insertComment" parameterType="Comment">
+		insert into post_comments
+		(
+		  user_no
+		, post_no
+		, content
+		)
+		values
+		(
+		  #{userNo}
+		, #{postNo}
+		, #{content}
+		)
+	</insert>
+	
+	<delete id="deleteComment">
+		delete from post_comments
+		 where comment_no = #{commentNo}
+	</delete>
+	
+	<update id="updateComment" parameterType="Comment">
+		update post_comments
+		   set content = #{content}
+		       updated_date = current_timestamp	
+		 where comment_no = #{no}
+	</update>
+
+</mapper>
