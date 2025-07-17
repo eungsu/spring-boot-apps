@@ -29,7 +29,7 @@ thymeleaf를 뷰 템플릿으로 사용하는 웹 애플리케이션이다.
   - `lombok`
   - `modelmapper`
   - `devtools`
-  - `commonmakr`, `commonmark-ext-gfm-tables`, `commonmark-ext-image-attributes` - markdown을 지원하는 라이브러리
+  - `commonmark`, `commonmark-ext-gfm-tables`, `commonmark-ext-image-attributes` - markdown을 지원하는 라이브러리
  
   ### `app3-jsp` 애플리케이션
   jsp를 뷰 템플릿으로 사용하는 웹 애플리케이션이다.
@@ -44,4 +44,4 @@ thymeleaf를 뷰 템플릿으로 사용하는 웹 애플리케이션이다.
     - `lombok`
     - `modelmapper`
     - `devtools`
-    - `commonmakr`, `commonmark-ext-gfm-tables`, `commonmark-ext-image-attributes` - markdown을 지원하는 라이브러리
+    - `commonmark`, `commonmark-ext-gfm-tables`, `commonmark-ext-image-attributes` - markdown을 지원하는 라이브러리
