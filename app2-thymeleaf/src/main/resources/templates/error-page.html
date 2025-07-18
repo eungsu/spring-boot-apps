@@ -15,7 +15,7 @@
 			        <p class="display-4">상태 코드 : <span class="text-danger" th:text="${errorCode}"></span></p>
 			        <p >오류 메세지 : <span class="error-message" th:utext="${errorMessage}"></span></p>
 			        <div>
-			            <a href="/" class="btn btn-primary">홈으로 이동</a>
+			            <a th:href="@{/}" class="btn btn-primary">홈으로 이동</a>
 			            <button onclick="history.back()" class="btn btn-outline-secondary">이전 페이지로</button>
 			            <button th:if="${errorCode == '500'}" onclick="location.reload()" class="btn btn-outline-secondary">다시 시도</button>
 			        </div>				
