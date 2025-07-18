@@ -4,65 +4,51 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	layout:decorate="~{layout/base}"
 	th:with="menu='posts'">
-<style layout:fragment="style">
-	body {
-    	background-color: #f8f9fa; /* 밝은 회색 배경 */
-	}
-	.container {
-		margin-top: 40px;
-		margin-bottom: 60px;
-		background-color: #ffffff;
-		padding: 40px;
-		border-radius: 8px;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-	}
-	h1 {
-		color: #343a40;
-		margin-bottom: 30px;
-		text-align: center;
-		font-weight: bold;
-	}
-	textarea.form-control {
-		min-height: 300px; /* 게시글 내용 입력 필드의 최소 높이 */
-		resize: vertical; /* 세로 방향으로만 크기 조절 허용 */
-	}
-	.form-label {
-		font-weight: 600; /* 레이블 글꼴 굵게 */
-	}
-</style>
-<section layout:fragment="content">
-	<h1><i class="bi bi-pencil-square me-2"></i> 게시글 작성</h1>
-	<hr class="mb-4">
 
-	<form th:action="@{/posts/create}" method="post" class="needs-validation" novalidate
-		th:object="${postCreateForm}" >
-		<div class="mb-3">
-			<label for="title" class="form-label">제목</label>
-			<input type="text" class="form-control" 
-				th:field="*{title}" 
-				th:classappend="${validated} ? (${#fields.hasErrors('title')} ? 'is-invalid' : 'is-valid')"
-				placeholder="게시글 제목을 입력하세요."/>
-			<div class="invalid-feedback" 
-				th:if="${#fields.hasErrors('title')}"
-				th:errors="*{title}"></div>
+<div layout:fragment="content" class="container my-4">
+	<div class="row mb-3">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header">
+					<i class="bi bi-pencil-square me-2"></i> 게시글 작성
+				</div>
+				<div class="card-body">
+					<form class="border p-3" th:action="@{/posts/create}" method="post" novalidate
+						th:object="${postCreateForm}" >
+						<div class="mb-3">
+							<label for="title" class="form-label">제목</label>
+							<input type="text" class="form-control" 
+								th:field="*{title}" 
+								th:classappend="${validated} ? (${#fields.hasErrors('title')} ? 'is-invalid' : 'is-valid')"
+								placeholder="게시글 제목을 입력하세요."/>
+							<div class="invalid-feedback" 
+								th:if="${#fields.hasErrors('title')}"
+								th:errors="*{title}"></div>
+						</div>
+						<div class="mb-4">
+							<label for="content" class="form-label">내용</label>
+							<textarea class="form-control" 
+								style="min-height: 300px;"
+								th:field="*{content}" 
+								th:classappend="${validated} ? (${#fields.hasErrors('content')} ? 'is-invalid' : 'is-valid')"placeholder="게시글 내용을 입력하세요."></textarea>
+							<div class="invalid-feedback" 
+								th:if="${#fields.hasErrors('content')}"
+								th:errors="*{content}"></div>
+							<div id="username" class="form-text">내용은 마크다운형식으로 작성하세요.</div>
+						</div>
+						
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+							<button type="submit" class="btn btn-primary btn-lg">
+								<i class="bi bi-send-fill me-2"></i> 등록
+							</button>
+							<a th:href="@{/posts/list}" class="btn btn-secondary btn-lg">
+								<i class="bi bi-x-circle-fill me-2"></i> 취소
+							</a>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
-		<div class="mb-4">
-			<label for="content" class="form-label">내용</label>
-			<textarea class="form-control" th:field="*{content}" th:classappend="${validated} ? (${#fields.hasErrors('content')} ? 'is-invalid' : 'is-valid')"placeholder="게시글 내용을 입력하세요."></textarea>
-			<div id="username" class="form-text">내용은 마크다운형식으로 작성하세요.</div>
-			<div class="invalid-feedback" 
-				th:if="${#fields.hasErrors('content')}"
-				th:errors="*{content}"></div>
-		</div>
-		
-		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<button type="submit" class="btn btn-primary btn-lg">
-				<i class="bi bi-send-fill me-2"></i> 등록
-			</button>
-			<a th:href="@{/posts/list}" class="btn btn-secondary btn-lg">
-				<i class="bi bi-x-circle-fill me-2"></i> 취소
-			</a>
-		</div>
-	</form>
-</section>
+	</div>
+</div>
 </html>
