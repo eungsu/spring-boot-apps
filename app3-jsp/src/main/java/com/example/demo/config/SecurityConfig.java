@@ -49,17 +49,17 @@ public class SecurityConfig {
 				.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
 				.requestMatchers("/**").permitAll()
 		)
-//		.formLogin(formLogin -> formLogin
-//				.loginPage("/login")
-//				.defaultSuccessUrl("/")
-//				.failureUrl("/login?error=fail")
-//		)
-		.formLogin(formLogin -> formLogin.disable())
+		.formLogin(formLogin -> formLogin
+				.loginPage("/login")
+				.defaultSuccessUrl("/")
+				.failureUrl("/login?error=fail")
+		)
+//		.formLogin(formLogin -> formLogin.disable())
 		.logout(logout -> logout
 				.logoutUrl("/logout")
 				.logoutSuccessUrl("/")
 		)
-		.addFilterBefore(autoLoginFilter, UsernamePasswordAuthenticationFilter.class)
+//		.addFilterBefore(autoLoginFilter, UsernamePasswordAuthenticationFilter.class)
 		.exceptionHandling(exceptionHandling -> exceptionHandling
 				.authenticationEntryPoint(customAuthenticationEntryPoint)
 				.accessDeniedHandler(customAccessDeniedHandler)
