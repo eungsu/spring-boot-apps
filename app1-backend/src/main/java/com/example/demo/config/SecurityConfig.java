@@ -46,9 +46,7 @@ public class SecurityConfig {
 			.cors(cors -> cors.configurationSource(corsConfigurationSource()))
 			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authorizeHttpRequests(authorize -> authorize
-				.requestMatchers("/api/auth/**").permitAll()
-				.requestMatchers("/h2-console/**").permitAll()
-				.anyRequest().authenticated()
+				.requestMatchers("/**").permitAll()
 			)
 			.exceptionHandling(exceptionHandling -> exceptionHandling
 				.authenticationEntryPoint(jwtAuthenticationEntryPoint)
