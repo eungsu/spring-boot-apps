@@ -34,7 +34,7 @@ public class CustomControllerExceptionHandler {
 		String parameterType = ex.getParameter().getParameterType().getName(); // 누락된 파라미터 타입 추출
 		
 		model.addAttribute("errorCode", 400);
-		model.addAttribute("errorMessage", String.format("필수 요청 파라미터 '%s' (%s)가 누락되었습니다.", parameterName, parameterType));
+		model.addAttribute("errorMessage", String.format("필수 요청 파라미터 '%s' (%s)가 올바르지 않습니다.", parameterName, parameterType));
 		
 		return "error-page";
 	}
