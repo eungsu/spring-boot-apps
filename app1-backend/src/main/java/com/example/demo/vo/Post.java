@@ -13,6 +13,7 @@ public class Post {
 	private int userNo;
 	private String title;
 	private String content;
+	private int viewCnt;
 	private int commentCnt;
 	private boolean deleted;
 	private LocalDateTime createdDate;

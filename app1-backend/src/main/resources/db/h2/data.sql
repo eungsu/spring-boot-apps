@@ -12,6 +12,435 @@ insert into posts
 (user_no, title, content)
 values
 (1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
+
+insert into posts
+(user_no, title, content)
+values
+(1, '연습1', '연습1 입니다.');
 
 insert into posts
 (user_no, title, content)

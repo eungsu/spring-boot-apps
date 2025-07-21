@@ -44,7 +44,7 @@ public class PostService {
 		List<Post> posts = postMapper.getPosts(pagination.getOffset(), pagination.getRows());
 		List<PostListResponse> items = posts.stream().map(PostListResponse::new).toList();
 
-		return ListResponse.toListResponse(items, pagination);
+		return new ListResponse<PostListResponse>(items, pagination);
 	}
   
 	public PostDetailResponse getPost(int postNo) {

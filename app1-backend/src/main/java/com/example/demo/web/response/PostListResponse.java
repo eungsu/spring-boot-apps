@@ -11,14 +11,16 @@ public class PostListResponse {
 	private final int postNo;
 	private final int userNo;
 	private final String title;
+	private final int commentCnt;
 	private final LocalDateTime createdDate;
-	private final String nickname;
+	private final String name;
 
 	public PostListResponse(Post post) {
 		this.postNo = post.getNo();
 		this.userNo = post.getUserNo();
 		this.title = post.getTitle();
+		this.commentCnt = post.getCommentCnt();
 		this.createdDate = post.getCreatedDate();
-		this.nickname = post.getUser().getNickname();
+		this.name = post.getUser().getNickname();
 	}
 }

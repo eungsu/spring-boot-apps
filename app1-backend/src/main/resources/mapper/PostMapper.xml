@@ -47,6 +47,7 @@
 		select A.post_no      as no
 			 , A.user_no      as userNo
 			 , A.title
+			 , A.comment_cnt  as commentCnt
 			 , A.created_date as createdDate
 			 , B.nickname     as "user.nickname"
 		  from posts A, users B
@@ -64,6 +65,7 @@
 			 , A.content
 			 , A.view_cnt		as viewCnt
 			 , A.deleted
+			 , A.view_cnt		as viewCnt
 			 , A.comment_cnt	as commentCnt
 			 , A.created_date	as createdDate
 			 , A.updated_date	as updatedDate

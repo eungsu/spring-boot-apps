@@ -8,6 +8,7 @@ import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @RestControllerAdvice
 @Slf4j
@@ -26,6 +28,14 @@ public class CustomExceptionHandler {
     
 		return ResponseEntity.internalServerError().body(RestResponse.internalServerError(ex.getMessage()));
 	}
+	
+	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
+	public ResponseEntity<RestResponse<Void>> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex, Model model) {
+		log.error("Request Parameter is miss: {}", ex.toString());
+		
+		return ResponseEntity.badRequest().body(RestResponse.badRequest("요청파라미터 값이 올바르지 않음"));
+	}
+	
 
 	@ExceptionHandler(MissingServletRequestParameterException.class)
 	public ResponseEntity<RestResponse<Void>> handleMissingServletRequestParameterException(MissingServletRequestParameterException ex) {
