@@ -1,10 +1,10 @@
 import PageContainer from '../layouts/PageContainer';
-import SignupForm from '../components/SignupForm';
+import Signup from '../components/Signup';
 
 const SignupPage = () => {
     return (
         <PageContainer title="회원가입">
-            <SignupForm />
+            <Signup />
         </PageContainer>
     );
 }

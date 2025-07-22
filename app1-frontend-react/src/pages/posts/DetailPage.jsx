@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchPostDetail } from '../../api/postApi';
+import { useParams, useNavigate } from 'react-router-dom';
+import { fetchPostDetail, deletePost } from '../../api/postApi';
 import PageContainer from '../../layouts/PageContainer';
 import PostDetail from '../../components/posts/PostDetail';
 
 const DetailPage = () => {
     const { no } = useParams();
     const [post, setPost] = useState({});
+    const navigate = useNavigate();
 
     const getPost = async (postNo) => {
         try {
@@ -21,13 +22,19 @@ const DetailPage = () => {
         getPost(no);
     }, [no]);
 
-    if (!post) {
-        return <div>로딩중</div>
+    const handleDelete = async (postNo) => {
+        try {
+            await deletePost(postNo);
+            navigate('/posts/list');
+        } catch (error) {
+            alert('게시글 삭제 실패 : ' + error.response.data.message);
+        }
     }
+
     
     return (
         <PageContainer title="게시글 상세">
-            <PostDetail post={post} />
+            <PostDetail post={post} onDelete={handleDelete}/>
         </PageContainer>
     );
 }

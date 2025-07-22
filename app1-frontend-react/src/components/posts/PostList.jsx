@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const PostList = ({ posts }) => {
     return (
         <table className="table">
@@ -19,7 +21,7 @@ const PostList = ({ posts }) => {
                     posts.map(post => (
                         <tr key={post.postNo}>
                             <td>{post.postNo}</td>
-                            <td>{post.title}</td>
+                            <td><Link to={`/posts/detail/${post.postNo}`}>{post.title}</Link></td>
                             <td>{post.name}</td>
                             <td>{new Date(post.createdDate).toLocaleString()}</td>
                             <td>{post.commentCnt}</td>
