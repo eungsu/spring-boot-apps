@@ -9,7 +9,6 @@ import com.example.demo.web.response.common.RestResponse;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +27,6 @@ public class PostController {
 
 	private final PostService postService;
 
-	@PreAuthorize("isAuthenticated()")
 	@PostMapping
 	public ResponseEntity<RestResponse<?>> createPost(@RequestBody PostCreateUpdateRequest request,
 			@AuthenticationPrincipal int userNo) {
@@ -53,7 +51,6 @@ public class PostController {
 		return ResponseEntity.ok(RestResponse.success(data));
 	}
   
-	@PreAuthorize("isAuthenticated()")
 	@PutMapping("/{postNo}")
 	public ResponseEntity<RestResponse<?>> updatePost(@PathVariable("postNo") int postNo,
 			@RequestBody PostCreateUpdateRequest request,
@@ -64,7 +61,6 @@ public class PostController {
 				.body(RestResponse.success("게시글이 수정 되었습니다.", null));
 	}
   
-	@PreAuthorize("isAuthenticated()")
 	@DeleteMapping("/{postNo}")
 	public ResponseEntity<RestResponse<?>> deletePost(@PathVariable("postNo") int postNo,
 			@AuthenticationPrincipal int userNo) {

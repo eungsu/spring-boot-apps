@@ -4,6 +4,7 @@ import com.example.demo.service.AuthService;
 import com.example.demo.service.UserService;
 import com.example.demo.web.request.LoginRequest;
 import com.example.demo.web.request.SignupRequest;
+import com.example.demo.web.response.JwtRefreshResponse;
 import com.example.demo.web.response.JwtResponse;
 import com.example.demo.web.response.SignupResponse;
 import com.example.demo.web.response.common.RestResponse;
@@ -41,9 +42,9 @@ public class AuthController {
 	}
 
 	@GetMapping("/refresh")
-	public ResponseEntity<RestResponse<JwtResponse>> refreshToken(@RequestParam String token) {
-		JwtResponse jwtResponse = authService.refreshToken(token);
+	public ResponseEntity<RestResponse<JwtRefreshResponse>> refreshToken(@RequestParam String token) {
+		JwtRefreshResponse jwtRefreshResponse = authService.refreshToken(token);
 
-		return ResponseEntity.ok(RestResponse.success(jwtResponse));
+		return ResponseEntity.ok(RestResponse.success(jwtRefreshResponse));
 	}
 }

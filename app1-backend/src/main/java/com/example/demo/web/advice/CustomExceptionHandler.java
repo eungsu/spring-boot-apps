@@ -71,9 +71,9 @@ public class CustomExceptionHandler {
 		return ResponseEntity.internalServerError().body(RestResponse.internalServerError("데이터 엑세스 오류"));
 	}
   
-	@ExceptionHandler(RuntimeException.class)
-	public ResponseEntity<RestResponse<Void>> handleRuntimeException(RuntimeException ex) {
-		log.error("Internal Server Error: {}", ex.toString());
-		return ResponseEntity.internalServerError().body(RestResponse.internalServerError("내부 서버 오류"));
-	}
+//	@ExceptionHandler(RuntimeException.class)
+//	public ResponseEntity<RestResponse<Void>> handleRuntimeException(RuntimeException ex) {
+//		log.error("Internal Server Error: {}", ex.toString());
+//		return ResponseEntity.internalServerError().body(RestResponse.internalServerError("내부 서버 오류"));
+//	}
 }

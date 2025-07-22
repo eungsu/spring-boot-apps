@@ -3,14 +3,12 @@ package com.example.demo.web.response;
 import lombok.Getter;
 
 @Getter
-public class JwtResponse {
+public class JwtRefreshResponse {
 	private final String accessToken;
-	private final String refreshToken;
 	private final long expiresIn;
 
-	public JwtResponse(String accessToken, String refreshToken, long expiresIn) {
+	public JwtRefreshResponse(String accessToken, long expiresIn) {
 		this.accessToken = accessToken;
-		this.refreshToken = refreshToken;
 		this.expiresIn = expiresIn;
 	}
 }

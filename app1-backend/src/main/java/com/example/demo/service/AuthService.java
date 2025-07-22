@@ -6,6 +6,7 @@ import com.example.demo.mapper.UserMapper;
 import com.example.demo.vo.RefreshToken;
 import com.example.demo.vo.User;
 import com.example.demo.web.request.LoginRequest;
+import com.example.demo.web.response.JwtRefreshResponse;
 import com.example.demo.web.response.JwtResponse;
 import com.example.demo.web.security.JwtTokenProvider;
 
@@ -51,7 +52,7 @@ public class AuthService {
 		return new JwtResponse(accessToken, refreshToken.getToken(), jwtExpirationInMs);
 	}
 
-	public JwtResponse refreshToken(String token) {
+	public JwtRefreshResponse refreshToken(String token) {
 		RefreshToken refreshToken = refreshTokenMapper.getRefreshTokenByToken(token);
 		if (refreshToken == null) {
 			throw new AppException("refreshToken 정보가 없습니다.");
@@ -63,13 +64,7 @@ public class AuthService {
 		User user = userMapper.getUserByUserNo(refreshToken.getUserNo());
 		String accessToken = jwtTokenProvider.generateToken(user.getNo(), user.getRole());
 		
-		if (refreshToken.isExpirationTimeWithinOneHour()) {
-			refreshToken = generateRefreshToken(user.getNo());
-			refreshTokenMapper.deleteRefreshTokenByUserNo(user.getNo());
-			refreshTokenMapper.insertRefreshToken(refreshToken);
-		}
-
-		return new JwtResponse(accessToken, refreshToken.getToken(), jwtExpirationInMs);
+		return new JwtRefreshResponse(accessToken, jwtExpirationInMs);
 	}
 
 	private RefreshToken generateRefreshToken(int userNo) {
