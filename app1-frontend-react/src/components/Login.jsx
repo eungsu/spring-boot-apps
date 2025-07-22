@@ -22,7 +22,7 @@ const Login = () => {
             const response = await login(loginData);
             const { accessToken, refreshToken, expiresIn } = response.data;
             saveTokens({ accessToken, refreshToken, expiresIn });
-            
+
             alert(response.message);
             navigate('/');
         } catch (error) {
@@ -42,7 +42,7 @@ const Login = () => {
                     <input type="password" className="form-control" name="password" value={loginData.password} onChange={handleChange} />
                 </div>
                 <div className="mb-3">
-                    <button type="submit" className="btn btn-primary w-100 mb-3">회원가입</button>
+                    <button type="submit" className="btn btn-primary w-100 mb-3">로그인</button>
                     <Link to={'/signup'} type="button" className="btn btn-outline-secondary w-100">취소</Link>
                 </div>
             </form>

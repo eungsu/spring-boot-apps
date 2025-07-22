@@ -38,7 +38,6 @@ instance.interceptors.response.use(
                 return instance(originalRequest);
             } catch (e) {
                 store.clearTokens();
-                window.location.href = '/login';
                 return Promise.reject(e);
             }
         }

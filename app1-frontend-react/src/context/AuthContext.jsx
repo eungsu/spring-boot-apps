@@ -47,7 +47,6 @@ export const AuthProvider = ({ children }) => {
     const clearTokens = () => {
         localStorage.clear();
         setAuth({ accessToken: null, refreshToken: null, expiresAt: 0, isAuthenticated: false });
-        window.location.href = '/login';
     }
 
     useEffect(() => {
