@@ -6,8 +6,8 @@ import { useAuth } from '../context/AuthContext';
 const Login = () => {
     const { saveTokens } = useAuth();
     const [loginData, setLoginData] = useState({
-        username: '',
-        password: ''
+        username: 'hong',
+        password: '1234'
     });
     const navigate = useNavigate();
 

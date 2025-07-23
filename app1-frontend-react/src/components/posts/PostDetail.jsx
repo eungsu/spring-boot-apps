@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 const PostDetail = ({ post, onDelete }) => {
-
     const handleDeletePost = () => {
         if (window.confirm("게시글을 삭제하시겠습니까?")) {
             onDelete(post.postNo);
