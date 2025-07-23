@@ -21,7 +21,6 @@
 								path="username"
 								placeholder="아이디를 입력하세요"/>
 							<form:errors path="username" cssClass="invalid-feedback"/>
-							<div class="form-text">영어 대소문자, 숫자 포함 3~20 글자</div>
 						</div>
 						<div class="mb-3">
 							<form:label path="password" class="form-label"><span class="text-danger">*</span> 비밀번호</form:label>
@@ -30,7 +29,6 @@
 								path="password" 
 								placeholder="비밀번호를 입력하세요" />
 							<form:errors path="password" cssClass="invalid-feedback"/>
-							<div class="form-text">영어 대소문자, 숫자 최소 하나 이상 포함 8~20 글자</div>
 						</div>
 						<div class="mb-3">
 							<form:label path="email" class="form-label"><span class="text-danger">*</span> 이메일</form:label>
@@ -47,7 +45,6 @@
 								path="nickname" 
 								placeholder="이름을 입력하세요" />
 							<form:errors path="nickname" cssClass="invalid-feedback"/>
-							<div class="form-text">한글 2~7 글자</div>
 						</div>
 						<div class="mb-3">
 							<form:label path="tel" class="form-label">전화번호</form:label>
