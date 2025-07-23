@@ -1,13 +1,19 @@
 package com.example.demo.web.controller;
 
 import com.example.demo.service.PostService;
+import com.example.demo.web.request.CommentCreateRequest;
 import com.example.demo.web.request.PostCreateUpdateRequest;
+import com.example.demo.web.response.CommentResponse;
 import com.example.demo.web.response.PostDetailResponse;
 import com.example.demo.web.response.PostListResponse;
 import com.example.demo.web.response.common.ListResponse;
 import com.example.demo.web.response.common.RestResponse;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +34,7 @@ public class PostController {
 	private final PostService postService;
 
 	@PostMapping
-	public ResponseEntity<RestResponse<?>> createPost(@RequestBody PostCreateUpdateRequest request,
+	public ResponseEntity<RestResponse<?>> createPost(@Valid @RequestBody PostCreateUpdateRequest request,
 			@AuthenticationPrincipal int userNo) {
 		postService.createPost(request, userNo);
 
@@ -69,4 +75,32 @@ public class PostController {
 		return ResponseEntity.ok()
 				.body(RestResponse.success("게시글이 삭제처리 되었습니다.", null));
 	}
+	
+	@PostMapping("/{postNo}/comments")
+	public ResponseEntity<RestResponse<?>> addComment(@PathVariable("postNo") int postNo,
+			@RequestBody CommentCreateRequest request,
+			@AuthenticationPrincipal int userNo) {
+		postService.addComment(request, postNo, userNo);
+		
+		return ResponseEntity.status(201)
+				.body(RestResponse.created("댓글이 등록되었습니다.", null));
+	}
+	
+	@GetMapping("/{postNo}/comments")
+	public ResponseEntity<RestResponse<List<CommentResponse>>> getComments(@PathVariable("postNo") int postNo) {
+		List<CommentResponse> data = postService.getComments(postNo);
+		
+		return ResponseEntity.ok(RestResponse.success(data));
+	}
+	
+	@DeleteMapping("/{postNo}/comments/{commentNo}")
+	public ResponseEntity<RestResponse<?>> deleteComment(@PathVariable("postNo") int postNo,
+			@PathVariable("commentNo") int commentNo,
+			@AuthenticationPrincipal int userNo) {
+		postService.deleteComment(postNo, commentNo, userNo);
+		
+		return ResponseEntity.ok()
+				.body(RestResponse.success("댓글 삭제되었습니다.", null));
+	}
+	
 }

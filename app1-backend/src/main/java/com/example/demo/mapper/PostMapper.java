@@ -14,8 +14,12 @@ public interface PostMapper {
 	void insertPost(Post post);
 	void updatePost(Post post);
 	void deletePost(int postNo);
+	void incrementViewCnt(int postNo);
+	void incrementCommentCnt(int postNo);
+	void decrementCommentCnt(int postNo);
 	int getTotalRows();
-	List<Post> getPosts(@Param("offset") int offset, @Param("rows") int rows);
-	Post getPostByPostNo(int postNo);
+	List<Post> getPosts(@Param("offset") int offset, 
+			            @Param("rows") int rows);
+	Optional<Post> getPostByPostNo(int postNo);
 	Optional<Integer> getPostUserNoByPostNo(int postNo);
 }

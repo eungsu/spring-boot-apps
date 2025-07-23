@@ -38,13 +38,13 @@ public class AuthController {
 	public ResponseEntity<RestResponse<JwtResponse>> authenticateUser(@RequestBody LoginRequest loginRequest) {
 		JwtResponse jwtResponse = authService.login(loginRequest);
 
-		return ResponseEntity.ok(RestResponse.success(jwtResponse));
+		return ResponseEntity.ok(RestResponse.success("로그인이 완료되었습니다.", jwtResponse));
 	}
 
 	@GetMapping("/refresh")
 	public ResponseEntity<RestResponse<JwtRefreshResponse>> refreshToken(@RequestParam String token) {
 		JwtRefreshResponse jwtRefreshResponse = authService.refreshToken(token);
 
-		return ResponseEntity.ok(RestResponse.success(jwtRefreshResponse));
+		return ResponseEntity.ok(RestResponse.success("토큰이 재발급되었습니다.", jwtRefreshResponse));
 	}
 }

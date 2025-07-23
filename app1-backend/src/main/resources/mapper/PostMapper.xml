@@ -37,34 +37,54 @@
 		 where post_no = #{postNo}
 	</update>
 
-  	<select id="getTotalRows" resultType="int">
-    	select count(*)
+	<update id="incrementViewCnt">
+		update posts
+		   set view_cnt = view_cnt + 1
+		     , updated_date = current_timestamp	
+		 where post_no = #{postNo}
+	</update>
+	
+	<update id="incrementCommentCnt">
+		update posts
+		   set comment_cnt = comment_cnt + 1
+		     , updated_date = current_timestamp	
+		 where post_no = #{postNo}
+	</update>
+	
+	<update id="decrementCommentCnt">
+		update posts
+		   set comment_cnt = comment_cnt - 1
+		     , updated_date = current_timestamp	
+		 where post_no = #{postNo}
+	</update>
+
+	<select id="getTotalRows" resultType="int">
+		select count(*)
 		  from posts
 		 where deleted = false
 	</select>
 
 	<select id="getPosts" resultType="Post">
-		select A.post_no      as no
-			 , A.user_no      as userNo
-			 , A.title
-			 , A.comment_cnt  as commentCnt
-			 , A.created_date as createdDate
-			 , B.nickname     as "user.nickname"
+		select A.post_no		as no
+		     , A.user_no		as userNo
+		     , A.title
+		     , A.view_cnt		as viewCnt
+		     , A.comment_cnt    as commentCnt
+		     , A.created_date	as createdDate
+		     , B.nickname		as "user.nickname"
 		  from posts A, users B
 		 where A.deleted = false
 		   and A.user_no = B.user_no
-	  order by A.post_no desc
+      order by A.post_no desc
 		offset #{offset} rows
 		 fetch first #{rows} rows only
 	</select>
-  
+	
 	<select id="getPostByPostNo" resultType="Post">
 		select A.post_no		as no
 			 , A.user_no		as userNo
 			 , A.title
 			 , A.content
-			 , A.view_cnt		as viewCnt
-			 , A.deleted
 			 , A.view_cnt		as viewCnt
 			 , A.comment_cnt	as commentCnt
 			 , A.created_date	as createdDate
@@ -74,7 +94,7 @@
 		 where A.user_no = B.user_no
 		   and A.post_no = #{postNo}
 	</select>
-	
+
 	<select id="getPostUserNoByPostNo" resultType="int">
 		select user_no
 		  from posts

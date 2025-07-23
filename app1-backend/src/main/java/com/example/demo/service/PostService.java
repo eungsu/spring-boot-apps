@@ -1,10 +1,14 @@
 package com.example.demo.service;
 
 import com.example.demo.exception.AppException;
+import com.example.demo.mapper.CommentMapper;
 import com.example.demo.mapper.PostMapper;
 import com.example.demo.util.Pagination;
+import com.example.demo.vo.Comment;
 import com.example.demo.vo.Post;
+import com.example.demo.web.request.CommentCreateRequest;
 import com.example.demo.web.request.PostCreateUpdateRequest;
+import com.example.demo.web.response.CommentResponse;
 import com.example.demo.web.response.PostDetailResponse;
 import com.example.demo.web.response.PostListResponse;
 import com.example.demo.web.response.common.ListResponse;
@@ -14,13 +18,15 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class PostService {
 
-	private final PostMapper postMapper;
 	private final ModelMapper modelMapper;
+	private final PostMapper postMapper;
+	private final CommentMapper commentMapper;
   
 	public void createPost(PostCreateUpdateRequest request, int userNo) {
 		Post post = modelMapper.map(request, Post.class);
@@ -48,8 +54,8 @@ public class PostService {
 	}
   
 	public PostDetailResponse getPost(int postNo) {
-		Post post = postMapper.getPostByPostNo(postNo);
-	  
+		Post post = postMapper.getPostByPostNo(postNo).orElseThrow(() -> new AppException("게시글을 찾을 수 없습니다."));
+		
 		return new PostDetailResponse(post);
 	}
   
@@ -73,6 +79,33 @@ public class PostService {
 		}
 		
 		postMapper.deletePost(postNo);
+	}
+
+	public List<CommentResponse> getComments(int postNo) {
+		List<Comment> comments = commentMapper.getCommentsByPostNo(postNo);
+		
+		return comments.stream().map(CommentResponse::new).toList();
+	}
+	
+	@Transactional
+	public void addComment(CommentCreateRequest request, int postNo, int userNo) {
+		Comment comment = modelMapper.map(request, Comment.class);
+		comment.setPostNo(postNo);
+		comment.setUserNo(userNo);
+		
+		commentMapper.insertComment(comment);
+		postMapper.incrementCommentCnt(postNo);
+	}
+	
+	@Transactional
+	public void deleteComment(int postNo, int commentNo, int userNo) {
+		Comment comment = commentMapper.getCommentByCommentNo(commentNo).orElseThrow(() -> new AppException("댓글이 존재하지 않습니다."));
+		if (comment.getUserNo() != userNo) {
+			throw new AppException("다른 사용자가 작성한 댓글은 삭제할 수 없습니다.");
+		}
+		
+		commentMapper.deleteComment(commentNo);
+		postMapper.decrementCommentCnt(postNo);
 	}
 }
 
