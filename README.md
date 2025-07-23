@@ -15,6 +15,16 @@ RESTful 웹 애플리케이션이다.
   - `modelmapper`
   - `devtools`
   - `jjwt-api`, `jjwt-impl`, `jjwt-jackson` - jwt을 지원하는 라이브러리
+ 
+### `app1-frontend-react` 애플리케이션
+react로 작성된 프론트엔드 애플리케이션이다.  
+`app1-backend`와 연동되어 동작한다.
+
+- 사용된 의존성
+  - axios
+  - react-router-dom
+  - bootstrap
+  - bootstrap-icon
 
 ### `app2-thymeleaf` 애플리케이션
 thymeleaf를 뷰 템플릿으로 사용하는 웹 애플리케이션이다.
