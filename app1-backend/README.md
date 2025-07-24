@@ -50,8 +50,8 @@ src/
   - 게시글, 댓글 관련 모든 요청은 인증 후에만 이용할 수 있는 요청이다.
   - 인증이 필요한 요청은 요청헤더 정보에 AccessToken 정보가 반드시 필요하다.
  
-#### 응답 정보 구조
-- 응답 정보는 아래와 같은 구조를 가진다.
+#### 공통 응답정보
+- 공통 응답정보는 아래와 같은 구조를 가진다.
   ```json
   {
     "statusCode": 
@@ -70,6 +70,18 @@ src/
   - `data`
     - 실제 응답 데이터다.
     - `null`, `Array`, `Object` 등이다.
+- 공통 응답정보를 표현하는 클래스: `RestResponse.java`
+  ```java
+  @Getter
+  public class RestResponse<T> {
+    private final int statusCode;
+    private final String message;
+    private final T data;
+
+    // 생성자, static 메소드 생략
+  }
+  ```
+  
 
 ###  2. 회원가입
 - 내용 :
