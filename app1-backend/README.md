@@ -429,6 +429,12 @@ src/
       "content":"댓글내용입니다."
     }
     ```
+  - 요청 데이터 클래스 : `CommentCreateRequest`
+    ```java
+    public class CommentCreateRequest {
+      private String content;
+    }
+    ```
 - 응답
   - 응답 데이터
     ```json
@@ -438,6 +444,7 @@ src/
       "data": null
     }
     ```
+  - 응답 데이터 객체 : `RestResponse<Void>`
 
 ### 12. 댓글 삭제
 - 내용
@@ -455,5 +462,6 @@ src/
       "data": null
     }
     ```
+  - 응답 데이터 객체 : `RestResponse<Void>`
 
   
