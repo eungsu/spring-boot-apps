@@ -99,6 +99,16 @@ src/
       "tel":"010-1111-1111"
     }
     ```
+  - 요청 데이터 클래스 : `SignupRequest`
+    ```java
+    public class SignupRequest {
+      private String username;
+      private String password;
+      private String email;
+      private String nickname;
+      private String tel;
+    }
+    ```
 - 응답
   - 응답 데이터 :
     ```json
@@ -108,6 +118,7 @@ src/
       "data": null
     }
     ```
+  - 응답 데이터 객체 : `RestResponse<Void>`
 
 ### 3. 로그인
 - 내용
@@ -122,6 +133,13 @@ src/
       "password":"1234"
     }
     ```
+  - 요청 데이터 클래스 : `LoginRequest`
+    ```java
+    public class LoginRequest {
+      private String username;
+      private String password;
+    }
+    ```
 - 응답
   - 응답데이터 :
     ```json
@@ -131,8 +149,16 @@ src/
       "data": {
         "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aG9yaXRpZXMiOiJST0xFX1VTRVIiLCJpYXQiOjE3NTMzMzYwNzIsImV4cCI6MTc1MzMzNjk3Mn0.jozkeLCaLWAnFmB5On3oi8YWAD0EIbFEV5CSPfC5Tl7mvWRmna3U2mvDHtqpQAGemR14RzE9rnyjkEqj-Y07jA",
         "refreshToken": "e6f00ad8-0162-4ea2-bbb3-39f4329167a7",
-        "expiresIn": 900000
+        "expiresAt": 1753345224801
       }
+    }
+    ```
+  - 응답 데이터 객체 : `RestResponse<JwtResponse>`
+    ```java
+    public class JwtResponse {
+      private final String accessToken;
+      private final String refreshToken;
+      private final long expiresAt;
     }
     ```
 
@@ -152,8 +178,15 @@ src/
       "message": "토큰이 재발급되었습니다.",
       "data": {
         "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aG9yaXRpZXMiOiJST0xFX1VTRVIiLCJpYXQiOjE3NTMzMzY1NzEsImV4cCI6MTc1MzMzNzQ3MX0.T64thOrMiOApfvBpaddAHqd_OU29Q-EBeUdE1ZTBtqe_epTokevDiQHLttLXe0LEfPHRzih0Xyhz82T7xBFzVQ",
-        "expiresIn": 900000
+        "expiresAt": 1753345224801
       }
+    }
+    ```
+  - 응답 데이터 객체 : `RestResponse<JwtRefreshResponse>`
+    ```java
+    public class JwtRefreshResponse {
+      private final String accessToken;
+      private final long expiresAt;
     }
     ```
 
