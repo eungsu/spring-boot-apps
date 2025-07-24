@@ -4,7 +4,6 @@ import com.example.demo.exception.AppException;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.vo.User;
 import com.example.demo.web.request.SignupRequest;
-import com.example.demo.web.response.SignupResponse;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -19,7 +18,7 @@ public class UserService {
 	private final ModelMapper modelMapper;
 	private final PasswordEncoder passwordEncoder;
 
-	public SignupResponse signup(SignupRequest signupRequest) {
+	public void signup(SignupRequest signupRequest) {
 		if (userMapper.getUserByUsername(signupRequest.getUsername()) != null) {
 			throw new AppException("사용할 수 없는 아이디입니다.");
 		}
@@ -31,9 +30,5 @@ public class UserService {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 
 		userMapper.insertUser(user);
-
-		User savedUser = userMapper.getUserByUsername(signupRequest.getUsername());
-
-		return modelMapper.map(savedUser, SignupResponse.class);
 	}
 }

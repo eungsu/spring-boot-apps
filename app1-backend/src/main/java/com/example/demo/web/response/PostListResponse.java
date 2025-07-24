@@ -9,7 +9,6 @@ import lombok.Getter;
 @Getter
 public class PostListResponse {
 	private final int postNo;
-	private final int userNo;
 	private final String title;
 	private final int commentCnt;
 	private final LocalDateTime createdDate;
@@ -17,7 +16,6 @@ public class PostListResponse {
 
 	public PostListResponse(Post post) {
 		this.postNo = post.getNo();
-		this.userNo = post.getUserNo();
 		this.title = post.getTitle();
 		this.commentCnt = post.getCommentCnt();
 		this.createdDate = post.getCreatedDate();

@@ -54,7 +54,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 		} else if (cause instanceof IllegalArgumentException) {
 			errorMessage = "유효하지 않는 JWT 토큰";
 		} else {
-			errorMessage = "인증오류";
+			errorMessage = cause.getMessage();
 		}
 
 		return RestResponse.unauthorized(errorMessage);

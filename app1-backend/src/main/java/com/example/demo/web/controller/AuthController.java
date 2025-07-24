@@ -6,7 +6,6 @@ import com.example.demo.web.request.LoginRequest;
 import com.example.demo.web.request.SignupRequest;
 import com.example.demo.web.response.JwtRefreshResponse;
 import com.example.demo.web.response.JwtResponse;
-import com.example.demo.web.response.SignupResponse;
 import com.example.demo.web.response.common.RestResponse;
 
 import jakarta.validation.Valid;
@@ -28,10 +27,10 @@ public class AuthController {
 	private final UserService userService;
 
 	@PostMapping("/signup")
-	public ResponseEntity<RestResponse<SignupResponse>>  signup(@Valid @RequestBody SignupRequest signupRequest) {
-		SignupResponse signupResponse = userService.signup(signupRequest);
+	public ResponseEntity<RestResponse<?>>  signup(@Valid @RequestBody SignupRequest signupRequest) {
+		userService.signup(signupRequest);
 
-		return ResponseEntity.status(201).body(RestResponse.created("회원가입 완료되었습니다.", signupResponse));
+		return ResponseEntity.status(201).body(RestResponse.created("회원가입 완료되었습니다.", null));
 	}
 
 	@PostMapping("/login")
