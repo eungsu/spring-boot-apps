@@ -23,9 +23,8 @@ export const AuthProvider = ({ children }) => {
 
     const updateTokens = async () => {
         try {
-            const response = await refresh();
-            const {accessToken, expiresIn } = response.data;
-            const expiresAt = Date.now() + expiresIn;
+            const response = await refresh(auth.refreshToken);
+            const {accessToken, expiresAt } = response.data;
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('expiresAt', expiresAt.toString());
             setAuth((prev) => ({ ...prev, accessToken, expiresAt, isAuthenticated: true }));
@@ -36,8 +35,7 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const saveTokens = ({ accessToken, refreshToken, expiresIn }) => {
-        const expiresAt = Date.now() + expiresIn * 1000;
+    const saveTokens = ({ accessToken, refreshToken, expiresAt }) => {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
         localStorage.setItem('expiresAt', expiresAt.toString());

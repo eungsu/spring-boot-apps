@@ -20,8 +20,8 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await login(loginData);
-            const { accessToken, refreshToken, expiresIn } = response.data;
-            saveTokens({ accessToken, refreshToken, expiresIn });
+            const { accessToken, refreshToken, expiresAt } = response.data;
+            saveTokens({ accessToken, refreshToken, expiresAt });
 
             alert(response.message);
             navigate('/');
