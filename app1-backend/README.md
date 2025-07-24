@@ -243,6 +243,26 @@ src/
       }
     }
     ```
+  - 응답 데이터 객체 : `RestResponse<ListResponse<PostListResponse>>`
+    ```java
+    // 목록정보를 표현하는 공통 클래스다
+    //   items : 목록으로 표시할 데이터들
+    //   paging : 페이징처리에 필요한 데이터
+    public class ListResponse<T> {
+      private final List<T> items;
+      private final Pagination paging;
+    }
+    ```
+    ```java
+    //  게시글 목록화면에 표현할 게시글 정보다.
+    public class PostListResponse {
+      private final int postNo;
+      private final String title;
+      private int commentCnt;
+      private final LocalDateTime createdDate;
+      private final String name;
+    }
+    ```
 
 ### 6. 게시글 상세 정보 조회
 - 내용
@@ -269,6 +289,19 @@ src/
       }
     }
     ```
+  - 응답 데이터 객체 : `RestResponse<PostDetailResponse>`
+    ```java
+    public class PostDetailResponse {
+      private final int postNo;
+      private final String name;
+      private final String title;
+      private final String content;
+      private final int viewCnt;
+      private final int commentCnt;
+      private final LocalDateTime createdDate;
+      private final LocalDateTime updatedDate;
+    }
+    ```
 
 ### 7. 게시글 등록
 - 내용
@@ -293,6 +326,7 @@ src/
       "data": null
     }
     ```
+  - 응답 데이터 객체 : `RestResponse<Void>`
 
 ### 8. 게시글 수정
 - 내용
@@ -317,6 +351,7 @@ src/
       "data": null
     }
     ```
+  - 응답 데이터 객체 : `RestResponse<Void>`
 
 ### 9. 게시글 삭제
 - 내용
@@ -334,6 +369,7 @@ src/
       "data": null
     }
     ```
+  - 응답 데이터 객체 : `RestResponse<Void>`
 
 ### 10. 댓글 목록 조회
 - 내용
@@ -368,6 +404,15 @@ src/
             "name": "홍길동"
         }
       ]
+    }
+    ```
+  - 응답 데이터 객체 : `RestResponse<List<CommentResponse>>`
+    ```java
+    public class CommentResponse {
+      private final int commentNo;
+      private final String name;
+      private final String content;
+      private final LocalDateTime createdDate;
     }
     ```
 
