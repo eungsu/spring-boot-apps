@@ -1,5 +1,5 @@
 import axios from './axiosInstance';
-const API_BASE = 'http://localhost:8080/api/posts';
+const API_BASE = process.env.REACT_APP_POSTS_API_BASE_URL;
 
 export const createPost = async (postData) => {
     const response = await axios.post(`${API_BASE}`, postData);
