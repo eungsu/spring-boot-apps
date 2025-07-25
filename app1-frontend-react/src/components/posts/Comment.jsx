@@ -23,7 +23,7 @@ const CommentList = ({ comments, onAdd, onDelete }) => {
                         <div className="mb-3 border p-3" key={comment.commentNo}>
                             <div className="mb-1">
                                 <strong><i className="bi bi-person-cicle"></i> <span>{comment.name}</span></strong>
-                                <span> | <i className="bi bi-calendar-check"></i> {comment.createdDate}</span>
+                                <span> | <i className="bi bi-calendar-check"></i> {new Date(comment.createdDate).toLocaleString()}</span>
                             </div>
                             <div className="card-text">
                                 <p>{comment.content}</p>
