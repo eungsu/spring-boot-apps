@@ -100,6 +100,31 @@
 └── index.html                                 # React 애플리케이션이 주입되는 기본 HTML 파일이다.
 ```
 
+### 애플리케이션의 주요 구성요소
+#### 레이아웃 (Layout)
+> 여러 페이지에서 공통으로 사용되는 UI 구조를 정의한다.
+> (예: 내비게이션바, 페이지 컨테이너 등)
+
+| 구성요소 | 설명 |
+|---|---|
+| `BaseLayout` | 전체 앱의 기본 골격을 제공한다. |
+| `Navbar` | 상단 내비게이션 바 (메뉴, 로고, 로그인/로그아웃 등 포함) |
+| `PageContainer` | 각 페이지의 내용을 담는 공통 영력을 정의한다. 실제 페이지가 이 영역 안에서 렌더링된다. |
+
+#### 페이지 (Page)
+> 라우터(`react-router-dom`)와 연결되어 URL 경로에 따라 렌더링되는 단위다.  
+> **페이지는 앱의 경로를 기반으로 한 큰 화면 단위**다.  
+> 주로 **페이지 단위의 로직, 데이터 매칭, 상태 관리** 등을 담당한다.  
+> 내부적으로 여러 컴포넌트들을 조합해 하나의 화면을 구성한다.  
+> 예: 'MainPage', `LoginPage`, `SignupPage`, `posts/ListPage`, `posts/DetailPage`, `posts/FormPage`, `posts/UpdateFormPage` 등  
+> 이들 페이지는 `<Route path="..." />`에 연결되어 URL 경로와 매칭된다.
+
+#### 컴포넌트 (Component)
+> 특정 기능이나 UI 요소를 담당하는 재사용 가능한 단위다.  
+> 보통 하나의 목적을 가진 기능단위이며, 작게 나눌 수록 더 좋다.  
+> **컴포넌트는 페이지 안에서 UI 및 기능을 담당하는 작고 재사용 가능한 단위**입니다.  
+> 예: `compontents/Login`, `components/Signup`, `components/Pagination`, `components/posts/PostList`, `components/posts/PostDetail`, `components/posts/PostForm`, `components/posts/PostUpdateForm`,    
+
 ### 컴포넌트 포함관계
 
 #### 메인 페이지
