@@ -31,23 +31,27 @@
    ```
 
 ### 컴퓨터에 도커가 설치되어 있지 않은 경우
-1. 원격 저장소에서 소스코드를 내려받는다.
+1. node.js를 설치한다.
+   - https://nodejs.org/en/download 사이트에 접속한다.
+   - 내컴퓨터의 운영체제에 맞는 node.js를 다운로드 받는다.
+   - 다운로드 받은 설치파일을 실행해서 node.js를 설치한다.
+2. 원격 저장소에서 소스코드를 내려받는다.
    ```bash
    git clone https://github.com/eungsu/spring-boot-apps.git
    ```
-2. `app1-backend` 애플리케이션을 실행한다.
+3. `app1-backend` 애플리케이션을 실행한다.
    ```bash
    cd spring-boot-apps
    cd app1-backend
    mvnw spring-boot:run 
    ```
-3. `app1-frontend-react` 애플리케이션을 실행한다.
+4. `app1-frontend-react` 애플리케이션을 실행한다.
    ```bash
    cd spring-boot-apps
    cd appl-frontend-react
    npm install
    npm run dev
    ```
-4. 실행이 완료되면 웹 브라우저를 켜고, `http://localhost:5173`으로 접속한다.
-5. 각각의 Cmd 창에서 `Ctrl+C`를 눌러서 애플리케이션을 종료시킨다.
+5. 실행이 완료되면 웹 브라우저를 켜고, `http://localhost:5173`으로 접속한다.
+6. 각각의 Cmd 창에서 `Ctrl+C`를 눌러서 애플리케이션을 종료시킨다.
 
