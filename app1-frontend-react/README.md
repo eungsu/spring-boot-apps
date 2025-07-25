@@ -25,6 +25,10 @@
      프론트엔드 애플리케이션(`app1-frontend-react`: react 애플리케이션) 실행정보가 포함되어 있다.
 
 4. 실행이 완료되면 웹 브라우저를 켜고, `http://localhost:3000`으로 접속한다.
+5. 아래 명령어를 실행하면 종료된다.
+   ```bash
+   docker-compose -f docker-compose/react.yml down
+   ```
 
 ### 컴퓨터에 도커가 설치되어 있지 않은 경우
 1. 원격 저장소에서 소스코드를 내려받는다.
@@ -45,4 +49,5 @@
    npm run dev
    ```
 4. 실행이 완료되면 웹 브라우저를 켜고, `http://localhost:5173`으로 접속한다.
+5. 각각의 Cmd 창에서 `Ctrl+C`를 눌러서 애플리케이션을 종료시킨다.
 
