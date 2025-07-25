@@ -55,3 +55,121 @@
 5. 실행이 완료되면 웹 브라우저를 켜고, `http://localhost:5173`으로 접속한다.
 6. 각각의 Cmd 창에서 `Ctrl+C`를 눌러서 애플리케이션을 종료시킨다.
 
+## 애플리케이션 구조
+
+### 디렉토리 구조조
+```pqsql
+├── src/
+│   ├── api/
+│   │   ├── axiosInstance.js                   # axios 인스턴스를 제공한다. interceptor를 이용해서 매 요청시 jwt 토큰을 요청에 포함시킨다.
+│   │   ├── auth.js                            # 회원가입, 로그인, 토큰 재발행 관련 API 함수가 정의되어 있다.
+│   │   └── postApi.js                         # 게시글, 댓글 관련 CRUD API 함수가 정의되어 있다.
+│   ├── components/
+│   │   ├── posts/
+│   │   │   ├── Comment.jsx                    # 댓글목록, 댓글폼을 표시하는 컴포넌트다.
+│   │   │   ├── PostDetail.jsx                 # 게시글 상세정보를 표시하는 컴포넌트다.
+│   │   │   ├── PostForm.jsx                   # 게시글 등록폼을 표시하는 컴포넌트다.
+│   │   │   ├── PostList.jsx                   # 게시글 목록을 표시하는 컴포넌트다.
+│   │   │   └── PostUpdateForm.jsx             # 게시글 수정폼을 표시하는 컴포넌트다.
+│   │   ├── Navbar.jsx                         # 내비바를 표시하는 컴포넌트다
+│   │   ├── Pagination.jsx                     # 페이지네이션을 표시하는 컴포넌트다.
+│   │   ├── Login.jsx                          # 로그인폼을 표시하는 컴포넌트다.
+│   │   └── Signup.jsx                         # 회원가입폼을 표시하는 컴포넌트다.
+│   ├── context/
+│   │   └── AuthContext.jsx                    # JWT 토큰과 인증상태 정보를 관리하는 React Contenxt다.
+│   ├── layouts/
+│   │   ├── BaseLayout.jsx                     # 모든 페이지에 공통으로 적용되는 레이아웃이 정의되어 있다.(`Navbar.jsx`를 포함한다.)
+│   │   └── PageContainer.jsx                  # 메인페이지를 제외한 대부분의 페이지에 적용되는 스타일용 컴포넌트다.
+│   ├── pages/
+│   │   ├── posts/
+│   │   │   ├── DetailPage.jsx                 # 게시글 상세 조회 페이지다. `PostDetail.jsx`와 `Comment.jsx`를 포함한다.
+│   │   │   ├── FormPage.jsx                   # 게시글 작성 페이지다. `PostForm.jsx`를 포함한다.
+│   │   │   ├── ListPage.jsx                   # 게시글 목록 페이지다. `PostList.jsx`와 `Pagination.jsx`를 포함한다.
+│   │   │   └── UpdateFormPage.jsx             # 게시글 수정 페이지다. `PostUpdateForm.jsx`를 포함한다.
+│   │   ├── MainPage.jsx                       # 메인 페이지다.
+│   │   ├── LoginPage.jsx                      # 로그인 페이지다. `Login.jsx`를 포함한다.
+│   │   └── SignupPage.jsx                     # 회원가입 페이지다. `Signup.jsx`를 포함한다.
+│   ├── App.jsx                                # 전체 라우팅 및 레이아웃 구성을 위한 최상위 루트 컴포넌트다.
+│   ├── main.jsx                               # 리액트 앱의 진입점이 되는 파일이다. 
+├── .gitignore
+├── Dockerfile                                 # 도커 이미지 빌드 파일이다.
+├── eslint.config.js                           # ESLint 설정 파일이다. 코드스타일과 문법 오류 검사를 위한 규칙을 정의한다.
+├── vite.config.js                             # Vite 번들러의 구성 파일이다.
+├── package.json                               # 프로젝트의 메타데이터(이름, 버전, 의존성 등)와 스크립트가 정의된 파일이다.
+├── package-lock.json                          # npm install 시 설치된 의존성의 정확한 버전 정보와 의존성 트리를 저장하는 파일이다.
+└── index.html                                 # React 애플리케이션이 주입되는 기본 HTML 파일이다.
+```
+
+### 컴포넌트 포함관계
+
+#### 메인 페이지
+```pqsql
+App
+ └── BaseLayout       # 페이지의 기본 레이아웃을 정의하는 컴포넌트다.
+      ├── Navbar      # 내비바를 표시하는 컴포넌트다.
+      └── MainPage    # 메인 페이지를 표시한다.
+```
+
+#### 회원가입 페이지
+```pqsql
+App
+ └── BaseLayout
+      ├── Navbar
+      └── PageContainer       # 페이지 제목과 내용을 카드형식으로 표현하는 컴포넌트다.
+           └── SignupPage     # 회원가입 페이지를 표시한다.
+                └── Signup    # 회원가입 폼을 표시하는 컴포넌트다.
+```
+
+#### 로그인 페이지
+```pqsql
+App
+ └── BaseLayout
+      ├── Navbar
+      └── PageContainer
+           └── LoginPage     # 로그인 페이지를 표시한다.
+                └── Login    # 로그인 폼을 표시하는 컴포넌트다.
+```
+
+#### 게시글 목록 페이지
+```pqsql
+App
+ └── BaseLayout
+      ├── Navbar
+      └── PageContainer
+           └── ListPage           # 게시글 목록 페이지를 표시한다.
+                ├── PostList      # 게시글 목록을 표시하는 컴포넌트다.
+                └── Pagination    # 페이지네이션을 표시하는 컴포넌트다.
+```
+
+#### 게시글 상세 페이지
+```pqsql
+App
+ └── BaseLayout
+      ├── Navbar
+      └── PageContainer
+           └── DetailPage         # 게시글 상세 페이지를 표시한다.
+                ├── PostDetail    # 게시글 상세정보를 표시하는 컴포넌트다.
+                └── Comment       # 댓글 목록과 댓글입력폼을 표시하는 컴포넌트다.
+```
+
+#### 게시글 등록 페이지
+```pqsql
+App
+ └── BaseLayout
+      ├── Navbar
+      └── PageContainer
+           └── FormPage         # 게시글 등록 페이지를 표시한다.
+                └── PostForm    # 게시글 등록폼을 표시하는 컴포넌트다. 
+```
+
+#### 게시글 수 페이지
+```pqsql
+App
+ └── BaseLayout
+      ├── Navbar
+      └── PageContainer
+           └── UpdateFormPage         # 게시글 수정 페이지를 표시한다.
+                └── PostUpdateForm    # 게시글 수정폼을 표시하는 컴포넌트다.
+```
+
+
