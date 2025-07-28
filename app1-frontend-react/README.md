@@ -76,7 +76,7 @@
 │   │   ├── Login.jsx                          # 로그인폼을 표시하는 컴포넌트다.
 │   │   └── Signup.jsx                         # 회원가입폼을 표시하는 컴포넌트다.
 │   ├── context/
-│   │   └── AuthContext.jsx                    # JWT 토큰과 인증상태 정보를 관리하는 React Contenxt다.
+│   │   └── AuthContext.jsx                    # JWT 토큰과 인증상태 정보를 관리하는 React Context다.
 │   ├── layouts/
 │   │   ├── BaseLayout.jsx                     # 모든 페이지에 공통으로 적용되는 레이아웃이 정의되어 있다.(`Navbar.jsx`를 포함한다.)
 │   │   └── PageContainer.jsx                  # 메인페이지를 제외한 대부분의 페이지에 적용되는 스타일용 컴포넌트다.
