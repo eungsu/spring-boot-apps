@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { updatePost } from '../../api/postApi';
+import { updatePost } from '../../api/posts';
 
 const PostUpdateForm = ({ post }) => {
     const navigate = useNavigate();
