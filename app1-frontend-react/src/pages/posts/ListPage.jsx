@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import  { fetchPosts } from '../../api/postApi';
+import  { fetchPosts } from '../../api/posts';
 import PageContainer from '../../layouts/PageContainer';
 import PostList from '../../components/posts/PostList';
 import Pagination from '../../components/Pagination';
