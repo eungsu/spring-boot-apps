@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchPostDetail } from '../../api/postApi';
+import { fetchPostDetail } from '../../api/posts';
 import PageContainer from '../../layouts/PageContainer';
 import PostUpdateForm from '../../components/posts/PostUpdateForm';
 
