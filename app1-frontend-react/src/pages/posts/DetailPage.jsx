@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchPostDetail, deletePost, addComment, fetchComments, deleteComment } from '../../api/postApi';
+import { fetchPostDetail, deletePost, addComment, fetchComments, deleteComment } from '../../api/posts';
 import PageContainer from '../../layouts/PageContainer';
 import PostDetail from '../../components/posts/PostDetail';
 import Comment from '../../components/posts/Comment';
