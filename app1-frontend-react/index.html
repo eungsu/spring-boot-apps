@@ -7,7 +7,17 @@
     <title>샘플 애플리케이션</title>
   </head>
   <body>
+    <!-- 
+      리액트 앱이 실제로 렌더링되는 곳이다.
+      리액트는 div#root 요소 안에 전체 컴포넌트 트리를 삽입한다.
+    -->
     <div id="root"></div>
+
+    <!--
+      리액트 애플리케이션에서 main.jsx는 애플리케이션의 진입점 역할을 하는 자바스크립트 파일이다.
+      이 파일은 리액트 앱을 브라우저의 DOM에 마운트(mount)하는 핵심역할을 수행한다.
+      type="module"는 ES 모듈 방식으로 자바스크립트파일을 로딩하게 한다.
+    -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
