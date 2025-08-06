@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchPostDetail } from '../../api/posts';
-import MainContent from '../../layouts/MainContent';
+import MainContentLayout from '../../layouts/MainContentLayout';
 import PostUpdateForm from '../../components/posts/PostUpdateForm';
 
 const UpdateFormPage = () => {
@@ -23,20 +23,20 @@ const UpdateFormPage = () => {
 
     if (!post) {
         return (
-            <MainContent title="게시글 수정">
+            <MainContentLayout title="게시글 수정">
                 <div>게시글을 찾을 수 없습니다.</div>
-            </MainContent>
+            </MainContentLayout>
         )
     }
 
     return (
-        <MainContent title="게시글 수정">
+        <MainContentLayout title="게시글 수정">
             {post === null ? (
                 <div className="card-text">로딩 중 ...</div>
             ) : (
                 <PostUpdateForm post={post}/>
             )}
-        </MainContent>
+        </MainContentLayout>
     );
 }
 

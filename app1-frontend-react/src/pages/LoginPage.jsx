@@ -1,11 +1,11 @@
-import MainContent from '../layouts/MainContent';
+import MainContentLayout from '../layouts/MainContentLayout';
 import Login from '../components/Login';
 
 const LoginPage = () => {
     return (
-        <MainContent title="로그인">
+        <MainContentLayout title="로그인">
             <Login />
-        </MainContent>
+        </MainContentLayout>
     );
 };
 
