@@ -33,12 +33,10 @@ const Signup = () => {
                 <div className="mb-3">
                     <label className="form-label">아이디</label>
                     <input type="text" className="form-control" name="username" value={formData.username} onChange={handleChange} />
-                    <div className="form-text">영어 대소문자, 숫자 포함 3~20 글자</div>
                 </div>
                 <div className="mb-3">
                     <label className="form-label">비밀번호</label>
                     <input type="password" className="form-control" name="password" value={formData.password} onChange={handleChange} />
-                    <div className="form-text">영어 대소문자, 숫자 최소 하나 이상 포함 8~20 글자</div>
                 </div>
                 <div className="mb-3">
                     <label className="form-label">이메일</label>
@@ -47,7 +45,6 @@ const Signup = () => {
                 <div className="mb-3">
                     <label className="form-label">이름</label>
                     <input type="text" className="form-control" name="nickname" value={formData.nickname} onChange={handleChange} />
-                    <div className="form-text">한글 2~7 글자</div>
                 </div>
                 <div className="mb-3">
                     <label className="form-label">전화번호</label>
