@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import  { fetchPosts } from '../../api/posts';
-import MainContentLayout from '../../layouts/MainContentLayout';
+import ContentLayout from '../../layouts/ContentLayout';
 import PostList from '../../components/posts/PostList';
 import Pagination from '../../components/Pagination';
 
@@ -23,10 +23,10 @@ const ListPage = () => {
     }, [page]);
 
     return (
-        <MainContentLayout title="게시글 목록">
+        <ContentLayout title="게시글 목록">
             <PostList posts={posts} />
             <Pagination paging={paging} onPageChange={setPage}/>
-        </MainContentLayout>
+        </ContentLayout>
     )
 };
 

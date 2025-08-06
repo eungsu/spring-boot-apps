@@ -1,11 +1,11 @@
-import MainContentLayout from '../layouts/MainContentLayout';
+import ContentLayout from '../layouts/ContentLayout';
 import Signup from '../components/Signup';
 
 const SignupPage = () => {
     return (
-        <MainContentLayout title="회원가입">
+        <ContentLayout title="회원가입">
             <Signup />
-        </MainContentLayout>
+        </ContentLayout>
     );
 }
 

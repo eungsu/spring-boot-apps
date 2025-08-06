@@ -1,6 +1,6 @@
 import BaseLayout from './BaseLayout';
 
-const MainContentLayout = ({ title, children }) => {
+const ContentLayout = ({ title, children }) => {
     return (
         <BaseLayout>
             <div className="container mt-4">
@@ -21,4 +21,4 @@ const MainContentLayout = ({ title, children }) => {
     )
 };
 
-export default MainContentLayout;
+export default ContentLayout;
