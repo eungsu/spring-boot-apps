@@ -1,6 +1,6 @@
 import BaseLayout from './BaseLayout';
 
-const PageContainer = ({ title, children }) => {
+const MainContent = ({ title, children }) => {
     return (
         <BaseLayout>
             <div className="container mt-4">
@@ -21,4 +21,4 @@ const PageContainer = ({ title, children }) => {
     )
 };
 
-export default PageContainer;
+export default MainContent;

@@ -1,11 +1,11 @@
-import PageContainer from '../layouts/PageContainer';
+import MainContent from '../layouts/MainContent';
 import Signup from '../components/Signup';
 
 const SignupPage = () => {
     return (
-        <PageContainer title="회원가입">
+        <MainContent title="회원가입">
             <Signup />
-        </PageContainer>
+        </MainContent>
     );
 }
 

@@ -1,11 +1,11 @@
-import PageContainer from '../../layouts/PageContainer';
+import MainContent from '../../layouts/MainContent';
 import PostForm from '../../components/posts/PostForm';
 
 const FormPage = () => {
     return (
-        <PageContainer title="신규 게시글 등록">
+        <MainContent title="신규 게시글 등록">
             <PostForm />
-        </PageContainer>
+        </MainContent>
     );
 };
 

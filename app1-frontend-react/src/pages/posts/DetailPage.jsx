@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchPostDetail, deletePost, addComment, fetchComments, deleteComment } from '../../api/posts';
-import PageContainer from '../../layouts/PageContainer';
+import MainContent from '../../layouts/MainContent';
 import PostDetail from '../../components/posts/PostDetail';
 import Comment from '../../components/posts/Comment';
 
@@ -61,7 +61,7 @@ const DetailPage = () => {
     }
 
     return (
-        <PageContainer title="게시글 상세">
+        <MainContent title="게시글 상세">
             {post === null ? (
                 <p className="card-text">로딩 중 ...</p>
             ) : (
@@ -70,7 +70,7 @@ const DetailPage = () => {
                     <Comment comments={comments}  onAdd={handleAddComment} onDelete={handleDeleteComment}/>
                 </>
             )}
-        </PageContainer>
+        </MainContent>
     );
 }
 
