@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signup } from '../api/auth';
 
 const Signup = () => {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -23,6 +25,7 @@ const Signup = () => {
             alert(response.message);
             navigate('/');
         } catch (error) {
+            console.log("error", error);
             alert("회원가입 오류 발생: " + error.response.data.message);
         }
     }
