@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const CommentList = ({ comments, onAdd, onDelete }) => {
+const Comment = ({ comments, onAdd, onDelete }) => {
     const [content, setContent] = useState('');
 
     const handleSubmit = (e) => {
@@ -54,4 +54,4 @@ const CommentList = ({ comments, onAdd, onDelete }) => {
     );
 };
 
-export default CommentList;
+export default Comment;
