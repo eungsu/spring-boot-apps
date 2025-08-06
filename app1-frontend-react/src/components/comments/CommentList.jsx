@@ -1,15 +1,4 @@
-import { useState } from 'react';
-
-const Comment = ({ comments, onAdd, onDelete }) => {
-    const [content, setContent] = useState('');
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        onAdd(content);
-        setContent('');
-    }
-
+const CommentList = ({ comments, onDelete }) => {
     return (
         <div className="mb-3">
             <h4> 댓글 (<span>{comments.length}</span>)</h4>
@@ -34,24 +23,10 @@ const Comment = ({ comments, onAdd, onDelete }) => {
                             </div>
                         </div>
                     ))}
-                </div>
+                </div>                
             )}
-            <div className="mb-3">
-                <h5>댓글 작성</h5>
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <textarea className="form-control" rows="3"
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}
-                            placeholder="댓글을 입력하세요"></textarea>
-                    </div>
-                    <div className="text-end">
-                        <button type="submit" className="btn btn-sm btn-primary">댓글 작성</button>
-                    </div>
-                </form>
-            </div>
         </div>
     );
 };
 
-export default Comment;
+export default CommentList;

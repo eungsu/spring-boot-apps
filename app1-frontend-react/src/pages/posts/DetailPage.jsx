@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchPostDetail, deletePost, addComment, fetchComments, deleteComment } from '../../api/posts';
 import ContentLayout from '../../layouts/ContentLayout';
+import CommentLayout from '../../layouts/CommentLayout';
 import PostDetail from '../../components/posts/PostDetail';
-import Comment from '../../components/posts/Comment';
 
 const DetailPage = () => {
     const { no } = useParams();
@@ -67,7 +67,7 @@ const DetailPage = () => {
             ) : (
                 <>
                     <PostDetail post={post} onDelete={handleDelete}/>
-                    <Comment comments={comments}  onAdd={handleAddComment} onDelete={handleDeleteComment}/>
+                    <CommentLayout comments={comments}  onAdd={handleAddComment} onDelete={handleDeleteComment}/>
                 </>
             )}
         </ContentLayout>
